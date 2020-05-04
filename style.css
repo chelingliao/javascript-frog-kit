@@ -7,7 +7,7 @@ body {
 body,
 html {
     font-size: 10px;
-    background-image: linear-gradient(rgba(52, 63, 3, 0.3) 50%, rgba(12, 20, 0, 0.4) 70%), url('https://chelingliao.github.io/javascript-frog-kit/img/bg.jpg');
+    background-image: linear-gradient(rgba(52, 63, 3, 0.3) 50%, rgba(12, 20, 0, 0.4) 70%), url('https://github.com/chelingliao/javascript-frog-kit/blob/master/img/bg.jpg');
     background-size: cover;
 
 }
