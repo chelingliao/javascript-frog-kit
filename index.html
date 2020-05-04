@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript Frog Kit</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+    <div class="keys">
+        <div data-key="65" class="key">
+            <kbd>A</kbd>
+            <p class="sound">小雨蛙<br />Microhyla<br />ornata</p>
+        </div>
+        <div data-key="83" class="key">
+            <kbd>S</kbd>
+            <p class="sound">艾氏樹蛙<br />Chirixalus<br />eiffingeri</p>
+        </div>
+        <div data-key="68" class="key">
+            <kbd>D</kbd>
+            <p class="sound">梭德氏赤蛙<br />Rana<br />sauteri</p>
+        </div>
+        <div data-key="70" class="key">
+            <kbd>F</kbd>
+            <p class="sound">白頷樹蛙<br />Polypedates<br />megacephalus</p>
+        </div>
+        <div data-key="71" class="key">
+            <kbd>G</kbd>
+            <p class="sound">牛蛙<br />Rana<br />catesbeiana</p>
+        </div>
+        <div data-key="72" class="key">
+            <kbd>H</kbd>
+            <p class="sound">盤古蟾蜍<br />Bufo<br />bankorensis</p>
+        </div>
+        <div data-key="74" class="key">
+            <kbd>J</kbd>
+            <p class="sound">古氏赤蛙<br />Rana<br />kuhlii</p>
+        </div>
+        <div data-key="75" class="key">
+            <kbd>K</kbd>
+            <p class="sound">澤蛙<br />Rana<br />limnocharis</p>
+        </div>
+        <div data-key="76" class="key">
+            <kbd>L</kbd>
+            <p class="sound">翡翠樹蛙 Rhacophorus prasinatus</p>
+        </div>
+    </div>
+
+    <audio data-key="65" src="sounds/Microhyla.mp3"></audio>
+    <audio data-key="83" src="sounds/Chirixalus.mp3"></audio>
+    <audio data-key="68" src="sounds/Ranasauteri.mp3"></audio>
+    <audio data-key="70" src="sounds/Polypedates.mp3"></audio>
+    <audio data-key="71" src="sounds/Rana.mp3"></audio>
+    <audio data-key="72" src="sounds/Bufo.mp3"></audio>
+    <audio data-key="74" src="sounds/Ranakuhlii.mp3"></audio>
+    <audio data-key="75" src="sounds/Ranalimnocharis.mp3"></audio>
+    <audio data-key="76" src="sounds/Rhacophorus.mp3"></audio>
+
+    <script>
+
+        function playSound(e) {
+            let keyNo = e.keyCode || this.getAttribute("data-key");
+            const audio = document.querySelector(`audio[data-key="${keyNo}"]`);
+            const key = document.querySelector(`div[data-key="${keyNo}"]`);
+            if (!audio) return;
+
+            key.classList.add('playing');
+            audio.currentTime = 0.2;
+            audio.play();
+        }
+
+        function removeTransition(e) {
+            if (e.propertyName !== 'transform') return;
+            e.target.classList.remove('playing');
+        }
+
+        const keys = Array.from(document.querySelectorAll('.key'));
+        const listenTarget = ['window', 'click'];
+        keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+        window.addEventListener('keydown', playSound);
+        keys.forEach(key => key.addEventListener('click', playSound));
+    </script>
+
+
+</body>
+
+</html>
